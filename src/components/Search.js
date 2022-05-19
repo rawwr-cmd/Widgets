@@ -3,9 +3,19 @@ import axios from "axios";
 
 const Search = () => {
   const [term, setTerm] = useState("programming");
+  const [debouncedTerm, setDebouncedTerm] = useState(term);
   const [results, setResults] = useState([]);
 
-  //   console.log(results);
+  useEffect(() => {
+    const timerId = setTimeout(() => {
+      setDebouncedTerm(term);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [term]);
+
   useEffect(() => {
     const Search = async () => {
       const { data } = await axios.get("https://en.wikipedia.org/w/api.php", {
@@ -14,27 +24,14 @@ const Search = () => {
           list: "search",
           origin: "*",
           format: "json",
-          srsearch: term,
+          srsearch: debouncedTerm,
         },
       });
       //   console.log(data);
       setResults(data.query.search);
     };
-
-    if (term && !results.length) {
-      Search();
-    } else {
-      const timeOutId = setTimeout(() => {
-        if (term) {
-          Search();
-        }
-      }, 1000);
-
-      return () => {
-        clearTimeout(timeOutId);
-      };
-    }
-  }, [term]);
+    Search();
+  }, [debouncedTerm]);
 
   const renderedResults = results.map((result) => {
     return (
