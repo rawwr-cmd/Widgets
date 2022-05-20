@@ -4,7 +4,7 @@ import Search from "./Search";
 import Dropdown from "./Dropdown";
 import Translate from "./Translate";
 import Route from "../Routes/Route";
-import Header from "./Header";
+import Header from "../Navigation/Header";
 
 const items = [
   {
