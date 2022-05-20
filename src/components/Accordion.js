@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Accordian = ({ items }) => {
+const Accordion = ({ items }) => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const onTitleClick = (index) => {
@@ -24,4 +24,4 @@ const Accordian = ({ items }) => {
   return <div className="ui styled accordion">{renderedItems}</div>;
 };
 
-export default Accordian;
+export default Accordion;
