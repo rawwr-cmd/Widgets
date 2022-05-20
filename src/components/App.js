@@ -3,7 +3,8 @@ import Accordion from "./Accordion";
 import Search from "./Search";
 import Dropdown from "./Dropdown";
 import Translate from "./Translate";
-import Route from "./Route";
+import Route from "../Routes/Route";
+import Header from "./Header";
 
 const items = [
   {
@@ -39,6 +40,7 @@ export default () => {
   const [selected, setSelected] = useState([0]);
   return (
     <div>
+      <Header />
       <Route path="/">
         <Accordion items={items} />
       </Route>
